@@ -9,7 +9,8 @@ from pandas import DataFrame
 import matplotlib.pyplot as plt
 
 all_words = []
-
+pos=0
+neg=0
 def create_word_features(words):
 	global all_words
 	return dict([(word.lower(), True) for word in words if len(word) > 2 and word in all_words])
@@ -109,8 +110,8 @@ def sentiment_analysis(all_reviews):
 
     time.sleep(1)
 
-    neg = 0
-    pos = 0
+    global neg
+    global pos
     neu = 0
     pos_gr=[]
     neg_gr=[]
@@ -141,13 +142,13 @@ def sentiment_analysis(all_reviews):
     	sys.exit
     data = {'Positive':pos_gr,'Negative':neg_gr,'Neutral':neu_gr}
     df = DataFrame(data,columns=['Positive','Negative','Neutral'])
-    
-    ax = plt.gca()
-    df.plot(kind='line',y='Positive',color='red',ax=ax)
+    return df
+    #ax = plt.gca()
+    #df.plot(kind='line',y='Positive',color='red',ax=ax)
     #plt.show()
-    df.plot(kind='line',y='Negative',color='blue',ax=ax)
+    #df.plot(kind='line',y='Negative',color='blue',ax=ax)
     #plt.show()
-    df.plot(kind='line',y='Neutral',color='black',ax=ax)
-    plt.show()
-    print("\n\nPositive reviews =", (pos/total) * 100)
-    print("Negative reviews =", (neg/total) * 100)    
+    #df.plot(kind='line',y='Neutral',color='black',ax=ax)
+    #plt.show()
+    #print("\n\nPositive reviews =", (pos/total) * 100)
+    #print("Negative reviews =", (neg/total) * 100)    

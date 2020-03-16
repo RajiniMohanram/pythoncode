@@ -9,11 +9,11 @@ from time import sleep
 import certifi
 import urllib3
 
-def scrape(n):
+def scrape(n,url):
     urllib3.contrib.pyopenssl.inject_into_urllib3()
     http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED',ca_certs=certifi.where())
     # This script has only been tested with Amazon.com
-    amazon_url  = 'https://www.amazon.com/Moto-PLUS-5th-Generation-Exclusive/product-reviews/B0785NN142/ref=cm_cr_arp_d_paging_btm_2?ie=UTF8&reviewerType=all_reviews&pageNumber='+str(n)
+    amazon_url  = url+str(n)
     # Add some recent user agent to prevent amazon from blocking the request 
     # Find some chrome user agent strings  here https://udger.com/resources/ua-list/browser-detail?browser=Chrome
     #headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'}
